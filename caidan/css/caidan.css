@@ -1,0 +1,46 @@
+.zong{
+	width: 100%;
+	position: relative;
+}
+.zong .caidan{
+	height: 40px;
+	background: rgba(51,136,208,0.9);
+	position: relative;
+	z-index: 9999;
+}
+.zong .caidan li{
+	width: 100px;
+	text-align: center;
+	height: 40px;
+	line-height:40px ;
+}
+.zong .caidan .yiji>li{
+	float:left;
+}
+.zong .caidan .yiji a{
+	color:#fff;
+}
+.zong .caidan .yiji>li>a:hover{
+	color:orange;
+}
+.zong .caidan .erji{
+	background: rgba(51,136,208,0.6);
+	display: none;
+}
+.zong .caidan .erji li{
+	border-top: rgb(51,136,228) 1px solid;
+}
+.zong .caidan .erji li:hover{
+	background: rgb(51,136,208);
+}
+.zong .caidan .yiji>li:hover .erji{
+	display: block;
+}
+.zong .tupian{
+	position: absolute;
+	left:0;
+	top:0;
+}
+.zong .tupian img{
+	width: 100%;
+}
