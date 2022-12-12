@@ -1,0 +1,42 @@
+#2：输入一个数，输出其绝对值。
+#  12  12 正       -12   -(-12)  负
+'''
+x = eval(input("请输入第一个数："))
+y = eval(input("请输入第二个数："))
+max = x  if  x>=y else y  #三元运算符
+print("较大值：",max)
+#"值1"  if "条件" else "值2"
+#max = x  if  x>=y else  y
+'''
+#x = eval(input("请输入一个数："))
+'''
+if x>=0:   # x>=0  x    -x
+    print("该数的绝对值：",x)
+else:
+    print("该数的绝对值：",-x)
+jdz = x if x>=0 else -x
+print("该数的绝对值：",jdz)
+
+#例1：输入一个整数，判断它是奇数还是偶数。
+x = eval(input("请输入一个数："))
+t =  "偶数" if x%2==0 else "奇数"
+print(t)
+'''
+# 例1：输入一个学生的整数成绩m，
+#按[90,100]、[80，89]、[70，79]、[60，69]、[0，59]的范围
+# 分别给出A、B、C、D、E的等级。
+s = eval(input("请输入成绩："))
+#if 90<=s<=100:
+if s>=90 and s<=100:
+    print("等级为A")
+    x = 10 + 20
+    print("测试",x)
+elif 80<=s<=89:
+    print("等级为B")
+elif 70<=s<=79:
+    print("等级为C")
+elif 60<=s<=69:
+    print("等级为D")
+else:
+    print("等级为E")
+# 输入有误：x<0 or x>100

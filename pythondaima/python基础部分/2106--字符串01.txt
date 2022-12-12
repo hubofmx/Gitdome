@@ -1,0 +1,83 @@
+'''
+
+#
+'''
+''' 
+print( len(s1))
+# \n  会不会原样输出呢？ ---换行的意思，转义字符：转换了原本的意思
+print("大家好\t\t\t你们睡醒了嘛?")
+# 你看到的由一个斜杠开头的字符，转义字符
+print("\\")  #第一个斜杠，代表转义的标志。 第二个斜杠\ :你需要输出的字符
+print("\'","\"")
+
+print("\n")
+
+m = 12.3
+n = 24
+print(m)
+'''
+''' 
+s1 = "a{}b{}c{}d{}"
+# 字符串中{}的个数与format函数参数相同，{}占位符，后面的参数意义与{}对应
+s2 = "a{}b{}c{}d{}".format(10,20,30,40)
+print(s2)
+# format参数的索引从0开始，{x}：x代表索引位置
+s3 = "a{0}b{3}c{2}d{1}".format(10,20,30,40)
+print(s3)
+
+
+s1 = 'a{}b{}c{}d{}'.format(1, 2, 3, 4)
+# 索引，format()函数中的元素，从0开始
+s2 = 'a{0}b{1}c{3}d{2}'.format(1, 2, 3, 4)
+s3 = 'a{0}b{1}c{0}d{1}'.format(1, 2, 3, 4)
+print('-' * 8)  # 字符串做乘法，就是字符串重复多少次
+print('一般用法：')
+print(s1)
+print(s2)
+print(s3)
+print('-' * 8)
+
+s1 = "我们喜欢Python！"
+print(len(s1))
+print(s1[0])
+print(s1[2:20:2])
+print(s1[-1])
+'''
+s1 = "A我们上课了"
+n = len(s1)
+# ord :返回参数（字符）对应的Unicode(ASCCI)编码值
+for i in range(n):
+    print(s1[i],ord(s1[i]))
+# chr():返回参数（整数）对应的字符
+a=chr(25105)
+b=chr(20204)
+c=chr(119)
+d=chr(101)
+print(a,b,c,d)
+
+#""-yFRd06->upper()   用户输入： yfrd06  YFRD06  ---upper
+
+s="12abcabcab"
+i=s.startswith("2")
+j=s.endswith("b")
+print(i,j)
+#split  将字符串按照参数的规则，切割开，最后形成列表；
+s="I am learning Python"
+list1 = s.split(" ")
+print(type(list1))
+print(list1)
+
+#join  将列表中的元素合并成字符串；
+s5 = "****".join(list1)  # 将list1列表中的所有元素（字符串类型）合并成一个“字符串”，
+# join可实现，指定合并之间插入的字符
+t = " "
+l1 = ['1','2','3','4']
+s6 = " ".join(list1)
+print(type(s5))
+print(s5)
+print(s6)
+
+s7 = "李老师"
+s8 = "上午好"
+print(s7+s8)  # 字符串做加法，代表字符串连接
+print(s7*4)   # 字符串做乘法，代表字符串重复多少遍

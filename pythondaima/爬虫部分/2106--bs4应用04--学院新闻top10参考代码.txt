@@ -1,0 +1,37 @@
+import requests
+from bs4 import BeautifulSoup
+url1 = "https://python123.io/ws/demo.html"
+url2 = "https://www.shanghairanking.cn/rankings/bcur/2022"
+url3 = "https://www.cswu.cn/34/list.htm"
+hd = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+r = requests.get(url3,headers=hd)
+r.encoding="UTF-8"
+soup = BeautifulSoup(r.text,"html.parser")
+#print(soup.prettify())
+#tag_a = soup.find('a',class_='name-cn')
+#wp_news_w6 > ul > li.list_item.i1 > div.fields.pr_fields > span.Article_Title > a
+#wp_news_w6 > ul > li.list_item.i2 > div.fields.pr_fields > span.Article_Title > a
+#wp_news_w6 > ul > li.list_item> div.fields.pr_fields > span.Article_Title > a
+l1 = soup.select("#wp_news_w6 > ul > li.list_item.i1 > div.fields.pr_fields > span.Article_Title > a")
+#print(l1[0].get_text())
+#l1_all = soup.select("#wp_news_w6 > ul > li.list_item > div.fields.pr_fields > span.Article_Title > a")
+l1_all = soup.select("#wp_news_w6 > ul > li > div.fields.pr_fields > span.Article_Title > a")
+#print(l1_all[2].string)
+
+list1 = [ ]
+for i in range(0,10):
+    #print(l1_all[i].string)
+    list1.append(l1_all[i].string+'\n')
+#print(list1)
+
+#写入文件中
+with open("d:/news_top10.txt","w+") as f:
+    f.writelines(list1)
+    print("文件写入完成。")
+
+#直接写文件：
+with open("d:\\news_top10v1.txt","w+") as f:
+    for i in range(0,10):
+        #print(l1_all[i].string)
+        f.write(l1_all[i].string+'\n')
+    print("直接写入成功！")

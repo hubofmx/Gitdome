@@ -1,0 +1,61 @@
+def Fun(month): # month=12
+    if month<=2:
+        return 1
+    else:
+        return Fun(month-1)+Fun(month-2) #自己调用自己，函数的递归
+        # 最小值已知，Fun(1)=Fun(2)=1  顺着走，找 f(n) 与  f(n-1)的关系
+    # f(n)= 2 * ( f(n+1)+1 )
+def  f(n):
+    if n==10:
+        return 1
+    else:
+        return 2*(f(n+1)+1)  # 最大值已知，f(10)=1  反着走，找 f(n) 与  f(n+1)的关系
+        #return f(n-1)/2-1
+def f1(x,y):# 函数体只有一句话，功能单一、简单  --匿名函数，lambda关键字声明
+    return x+y
+
+''' 
+for i in range(10,0,-1):
+    s = f(i)
+    print(s)
+
+x = lambda x,y,z:x+y+z  # x 看做函数名
+print( x(30,40,50) )
+
+#  定义匿名函数，求某个数值的平方；
+f1 = lambda x:x*x
+#  定义匿名函数，计算任意两个数的乘积；
+f2 = lambda x,y:x*y
+print( f1(4),f2(3,4))
+'''
+# 1+2+3+....+100
+import math
+import demo6
+import module #自定义模块
+print( math.sqrt(9) )
+print( demo6.sum(100))
+print( module.sushu(9))
+
+
+#作业第2题
+def count_things(s):
+    num=egl=nul=other=0
+    for i in s:  # 把字符串中的字符一个个取出来做循环
+        if 'a'<=i<='z' or 'A'<=i<='Z':
+            egl = egl+1
+        elif '0'<=i<='9': # elif 48<=ord(i)<=57:
+            num = num + 1
+        elif i==' ':
+            nul = nul+1
+        else:
+            other=other+1
+    print("数字个数：", num)
+    print("字母个数：", egl)
+    print("空格个数：", nul)
+    print("其他个数：", other)
+
+s = input("s=")
+count_things(s)
+#count_things("hello  123   Pth$#@")
+
+

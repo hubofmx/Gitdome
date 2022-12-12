@@ -1,0 +1,66 @@
+#  // 假除 ：正数取整数部分  向下取整，比得出来的数小的那个整数
+print( 10/4 )  # 真除 2.5
+print( 10//4 ) # 假除  2    10/4=2.5 向下取整 2.5 比2.5小的那个整数  2
+print( -10//4 ) # 假除 -3   -10/4=-2.5  向下取整 -2.5 比-2.5小的那个整数  -3
+# % 求余  两个数相除的余数
+print( 10%2 ) # 0
+print( 10%3 ) # 1
+print( 3.5%5 )  # 3.5
+print( 3.5%3) # 0.5
+# **  乘方，多少次幂
+print( 2**3 ) # 左右两边是整数，结果是整数；左右两边是小数，结果是小数
+print( 2.0**3 ) #两个操作数，一个是int整数 一个是float小数  结果是float小数
+print( 4.0**0.5)
+
+# 思考问题： 从键盘输入一个三位数整数，如：123，如何去处它的个位、十位、百位？？？
+# 取出一个数x的最高位， x//100   x//10   x//1000
+# 取出一个数x的最末尾的数： x%10
+# 去掉最高位， x%100  x%10  x%1000
+x = int( input("请你输入一个三位数整数：") )
+bai = x//100
+shi = (x%100)//10
+ge = x%10
+print(x,"的百位数是：",bai,sep="")
+print(x,"的十位数是：",shi,sep="")
+print(x,"的个位数是：",ge,sep="")
+
+# 复合赋值运算符   +=  -=  *=  /=  %=  注意：之间没有空格
+a,b=8,3
+a %=b  #  a = a%b = 8%3=2
+print( a)
+
+# 比较运算符： ==  ！=  >  <  >=  <=
+# 结果一定是bool型  True(对的)  Flase(错的)
+print( (3-4) == 5 ) # Flase
+print( 6!=6 )  # Flase
+print( 12 >= 90) # Flase
+print( 45 < 50 ) # True
+
+# 逻辑运算符  or  and  not
+# or 或： 当左边的操作数是零，则结果取右边操作数的值；
+    #    当左边操作数是非零，则结果取左边操作数的值；
+#   小张  or 小李
+print( 0 or 5) # 不做0  非零-->做  5
+print( 0 or 0)  # 0
+print( 6 or 0)  # 6
+print( 2 or 3)  # 2
+print( 10 or None) # None:代表0  10
+print( None or 10) # 10
+
+# and 且： 当左边的操作数是零，则结果取左操作数；
+#         当左边操作数是非零，则结果取右操作数；
+print( 3-3 and 5)  # 0
+print( 4*2 and None)  # None
+print( 4 and 6/2)  # 3.0
+print( None and 23) # None
+print( 0 and None) # 0
+print(6/1) #  /  真除的结果数据为float
+
+# not: 一元运算符，结果是bool True Flase
+# 操作数是非零， not(非零) --> Flase
+# 操作数是零，not(零) -->True
+print( not(3-5) )
+print( not 10)
+print( not 0)
+print( not None)
+# 总结优先级：算术运算符>成员测试运算符>关系运算符>逻辑运算符

@@ -1,0 +1,23 @@
+# 引入模块的第一种方式
+import math
+print( math.pi )
+r = 2
+#s = math.pi*r*r
+s = math.pi*math.pow(r,2)
+print(s)
+print( math.log2(2))
+print( math.log10(10))
+
+'''
+# 引入模块的第二种方式
+from math import pi,sqrt,log2
+print( pi )
+print( sqrt(4))
+print( log2(4))
+'''
+# 引入模块的第三种方式
+from math import *
+pi = 2
+print( pi )
+print( sqrt(4))
+print( log2(4))

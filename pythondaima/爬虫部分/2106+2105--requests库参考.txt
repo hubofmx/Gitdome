@@ -1,0 +1,22 @@
+import requests
+try:
+    # 定位爬虫目标url 信息
+    url = "https://www.cswu.cn/_upload/article/images/3b/c6/09e36cab45c19e5a4e575cff54fb/d4b7834e-e553-498d-bc94-59fe564ecf3d.jpg"
+    url_1= "https://www.cswu.cn/_upload/article/images/72/ee/f4aad4214c29a94bcbc08cfe1491/c04886a0-c2ac-406e-a5dc-06f32a8aca5c.jpg"
+    #伪装请求头，谷歌浏览
+    hd = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+    # get方法抓取网页信息
+    r = requests.get(url_1,headers=hd)
+    #自动获取异常的函数，只要网页反馈不是200 ，抛出异常
+    r.raise_for_status()
+    #设置呈现不编码
+    r.encoding="UTF-8"
+    #以上内容是爬虫都需要的内容
+    rb = r.content
+except:
+    print("异常！")
+
+#将二进制的信息保存到本地磁盘
+with open("d:/picture03.jpg","wb+") as f:
+    f.write(rb)
+    print("图片保存成功！")

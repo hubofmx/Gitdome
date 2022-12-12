@@ -1,0 +1,57 @@
+import requests
+from bs4 import BeautifulSoup
+url1 = "https://python123.io/ws/demo.html"
+hd = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+#1、使用requests库请求获取https://python123.io/ws/demo.html源代码；
+r = requests.get(url1,headers=hd)
+r.encoding="utf-8"
+#2、再使用BeautifulSoup将网页源码解析成soup文档备用；
+soup = BeautifulSoup(r.text,"html.parser")
+#print(soup.prettify())
+#3、打印输出网页标题；
+tag_title1 = soup.title
+print(tag_title1.string)
+
+tag_title2=soup.find('title') # find() 返回就是标签  标签.string 返回字符串
+print(tag_title2.string)
+
+list_title = soup.find_all('title') # find_all() 返回列表  列表[i].string 返回字符串
+print(list_title[0].string)
+
+#4、打印输出第一个p标签内容、名称、父标签名称；
+p1 = soup.p
+p11 = soup.find('p')
+p111 = soup.find('p',class_='title')
+list_p = soup.find_all('p') # 找到所有标签，列表   list_p[0]--第一个p标签
+print(list_p[0])
+print(p111.name)
+print(p111.parent.name)
+#5、打印输出第二个P标签的内容;
+p2 = soup.find('p',class_='course')
+list_p2 = soup.find_all('p')
+print("===========")
+print(p2)
+print("===========")
+print(list_p2[1])
+#并输出id属性为”link1”的值；
+list1 = soup.find_all(id='link1')
+print("********")
+print(list1[0])
+#6、打印输出第二个a标签的href属性的值；
+list2 = soup.find_all('a')
+list2 = soup.find('a',class_='py2')
+list2 = soup.find('a',id='link2')  #以上三种实现相同结果
+href2 = list2[1].attrs['href']
+print("********")
+print(href2)
+#7、打印输出第二个p标签的字符串；
+list_p2 = soup.find_all('p')
+p2 = soup.find('p',class_='course')
+print("$$$$$$$$$")
+#print(list_p2[1].string)
+#8、打印输出第一个a标签的字符串;
+a1 = soup.a
+a11 = soup.find('a')
+a111 = soup.find('a',class_='py1')
+list_a = soup.find_all('a') # 找到所有标签，列表   list_p[0]--第一个p标签
+print(list_a[0])

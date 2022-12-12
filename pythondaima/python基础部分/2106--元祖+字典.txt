@@ -1,0 +1,130 @@
+#字典
+school_info = {
+               'school_name':'清华大学',
+               'school_address':'北京市朝阳区',
+               'school_founding_time':'1911年',
+               'school_college':['文学院','理学院','法学院','工学院']
+               }
+print( school_info['school_name'] )
+for key in school_info.keys(): # range(10)
+    print(key)
+for values in school_info.values():
+    print(values)
+for all in school_info.items():
+    print(all)
+school_info['school_motto']='自强不息，厚德载物'
+print(school_info)
+school_info['school_address']='北京市海淀区'
+print(school_info)
+#school_info['school_college'] 取字典的school_college的值
+# 这个值是一个列表，现在将school_info['school_college']充当列表的名称
+# 如何在列表末尾添加值：列表名.append()
+school_info['school_college'].append('农学院')
+print(school_info)
+school_info['school_college'].insert(2,'科技学院')
+print(school_info)
+
+#方式一  ：创建字典
+adict = { "name":"曾优", "age":18, "class":2105}
+#  :  前面是键   后面 是值
+# 键：不可变的类型充当  "name"不可变的类型
+print(  adict['name'] )
+#print( adict['tel'])
+# get :得到某一个键所对应的值
+print(  adict.get('name') )
+print(  adict.get('tel','该值不存在！')    )
+# items:返回字典的键值对
+print(  adict.items()  )
+# 返回键
+print(  adict.keys()   )
+# 返回值
+print( adict.values() )
+#以键作为下标，为字典赋值时：
+# 原本键存在，  修改原来的值
+adict['name'] = '陈杰'
+# 键不存在，添加一个新的值
+adict['tel'] = 18711111111
+print(adict)
+#update:把一个字典一次性添加到另一个字典当中
+#
+d1 = {'学院':'大数据学院',"age":19}
+adict.update(d1)
+print(adict)
+# 元素的删除
+del adict['age']
+print(adict)
+#adict.clear()
+#print(adict)
+# 删除最后一个键值对
+adict.popitem()
+print(adict)
+# 删除指定的键所对应的  键值对
+adict.pop('class')
+print(adict)
+
+
+ # 方式三
+keys = ['a', 'b', 'c', 'd']
+values = [1, 2, 3, 4]
+dictionary = dict(zip(keys, values))
+#print(dictionary)
+#形式四 ，这种方式是对的
+d1 = dict(name='Dong', age=39)
+print(d1)
+
+
+#元祖
+
+'''
+week = ('日','一','二','三','四','五','六')
+print(type(week))
+w = int(input("w="))
+#0  --- 星期日  week[0]
+#1  --- 星期一  week[1]
+#2  --- 星期二  week[2]
+if 0<=w<=6:
+    print("星期",week[w],sep="")
+else:
+    print("输入有误！")
+
+# 函数定义时，形参最后一个是带星号的参数 *args,这个参数就是一个元祖
+# 元祖的个数是机动可变的；
+def fun(x,y,*args):
+    print(x,y,end=" ")
+    print(args)
+
+fun(1,2)
+fun(1,2,3)
+fun(1,2,3,4)
+
+# 通用返回最大值的函数，2个数可以返回最大，3个数  4  5  7  。。。个数不定
+# *args 参数  -----> 会被元祖  *:标记可变参数
+#内置函数 max
+def Max(*args):
+    #print(args)  # 1 2 3 4  max = 1   和第2 、3 、、、最后一个进行比较
+    max = args[0]
+    for i in range(1,len(args)):
+        if max<args[i]:
+            max = args[i]
+    return max
+
+print( Max(1,2,3,4) )
+print( Max(1,9) )
+'''
+
+datas = (
+          ('Apple',('Google',"大数据学院"),'Microsoft'),
+          ('Swift','Go','C#'),
+          ('Objective-C','Python','TypeScript')
+        )
+print( datas[0][1][-1])
+print( datas[1] )
+print( datas[1:3] )
+print( datas[0][1] )
+t1 = datas[0]
+print(t1[1])
+print( datas[-1][-1])
+l1 = list(datas)
+print(l1)
+l1.append("大数据学院")
+print(l1)

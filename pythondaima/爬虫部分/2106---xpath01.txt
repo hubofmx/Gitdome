@@ -1,0 +1,32 @@
+import requests
+from lxml import etree  #  种一棵树
+text ='<div>' \
+      '<ul>' \
+      '<li class="aaa" name="item"><a href="link1.html">第一 个</a></li>' \
+      '<li class="aaa" name="item"><a href="link1 .html">第二个</a></li>' \
+      '<li class="aaa" name="item"><a href="link1 .html">第三个</a></1i>' \
+      '<li class="aaa" name="item"><a href="link1 . html">第四个</a></li>' \
+      '</ul>' \
+      '</div>'
+tree = etree.HTML(text,etree.HTMLParser()) # 种一棵树，树苗html文档，肥料etree.HTMLParser()
+tree = etree.HTML(text)
+# tree.xpath  出来的结果是： 列表类型
+# text():节点的字符串内容
+# [contains(@class,'aaa')] ：谓语，精准定位节点
+# 找所以li节点的字符串内容
+r1 = tree.xpath("//li[contains(@class,'aaa')]/a/text()")
+r1 = tree.xpath("//li[@class='aaa']/a/text()")
+print(type(r1))
+print(r1)
+#获取最后一个
+result2 =tree.xpath('//li[last()]/a/text()')
+print(result2)
+#获取第三个
+result3=tree.xpath('//li[position()>2 and position()<4]/a/text()')
+print(result3)
+#获取倒数第三个字符串
+result4=tree.xpath('//li[last()-2]/a/text()')
+#获取倒数第三个： 某个属性的值   href的值
+result5=tree.xpath('//li[last()-2]/a/@href')
+print(result4)
+print("取倒数第三个href属性的值:",result5)

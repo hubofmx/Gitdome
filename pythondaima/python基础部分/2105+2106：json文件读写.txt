@@ -1,0 +1,66 @@
+import json  #切记，不要把你的python文件命名成  模块的文件
+# 本地  ------> 网页
+# python        json
+# 将python数据类型(列表)   转换成    json数据类型 --->编码
+# dumps()
+''' 
+l1 = [1,2,3,'python']
+print("l1:",type(l1))  #list  ---python 的数据类型
+print(l1)
+# 使用json下方的dumps函数
+s1 = json.dumps(l1)
+print("s1:",type(s1))
+print(s1)
+
+# 本地  <------ 网页
+# python <-------json
+# 将json数据类型   转换成   python数据类型  --->解码
+# loads()
+l2 = json.loads(s1)
+print("l2:",type(l2))
+print(l2)
+
+#你好 -- hello  -- 你好
+#python   json   python
+
+data = {'name': 'zhangdasan',
+        'age': 21,
+        'email': 'zdsan@163.com',
+        'test':{
+            'name': 'zhangdasan',
+             'age': 21,
+             'email': 'zdsan@163.com'}
+        }
+print("data：",type(data))
+print(data)
+# python ---> json
+s3 = json.dumps(data)
+print("s3:",type(s3))
+print(s3)
+#  json ---->python
+d1 = json.loads(s3)
+print("d1:",type(d1))
+print(d1)
+'''
+# json文件： dump 写入json      load 读取json
+data = {'name': 'zhangdasan',
+        'age': 21,
+        'email': 'zdsan@163.com',
+        'test':{
+            'name': 'zhangdasan',
+             'age': 21,
+             'email': 'zdsan@163.com'}
+        }
+
+with open("d:\\json02.json","w+",encoding="utf8") as f:
+    json.dump(data,f)
+    print("写入成功！")
+    
+with open("d:\\json02.json","r+",encoding="utf8") as f:
+    d = json.load(f)
+    print("d:",type(d))
+    print(d)
+    print(d['age'])
+
+# dumps()  loads()
+# dump()    load()

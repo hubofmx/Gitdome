@@ -1,0 +1,40 @@
+import requests
+from lxml import etree
+url = "https://www.cswu.cn/69/list.htm"
+hd ={
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
+    }
+# 获取网页的html 源码
+r = requests.get(url,headers=hd)
+# 种一棵树
+tree =  etree.HTML(r.text)
+# 办学成果的 文本信息
+# 自己写
+l1 = tree.xpath('//table/tbody/tr/td[2]/span/text()')
+print(len(l1))
+# 拷贝xpath路径
+# //*[@id="wp_content_w6_0"]/table/tbody/tr/td[2]/span
+# //*[@id="wp_content_w6_0"]/table/tbody/tr[3]/td[2]/span
+# //*[@id="wp_content_w6_0"]/table/tbody/tr[4]/td[2]/span
+
+# 右边
+# //*[@id="wp_content_w6_0"]/table/tbody/tr[2]/td[4]/span
+# //*[@id="wp_content_w6_0"]/table/tbody/tr/td/span
+l2 = tree.xpath('//*[@id="wp_content_w6_0"]/table/tbody/tr/td/span/text()')
+# 方法1：需要通过xpath 路径自己归纳总结出总的  xpath路径
+# 找特殊1：td/span    span 是td的儿子     td/span/span--- td的孙子，后代
+# 特殊2：  //*[@id="wp_content_w6_0"]/table/tbody/tr/td   --td本身
+l2 = tree.xpath('//*[@id="wp_content_w6_0"]/table/tbody/tr/td//text()')
+# td//text()  td的后代的 文本信息
+#//*[@id="wp_content_w6_0"]/table/tbody/tr/td/span/span
+# 方法2： 32 + 1+1   使用  |   对路径进行拼接
+# //*[@id="wp_content_w6_0"]/table/tbody/tr[12]/td[4]/span/span
+# //*[@id="wp_content_w6_0"]/table/tbody/tr[17]/td[4]
+# 37 + 1+ 1
+# 32 + 1  +1  ----->  |  和
+list_all = tree.xpath('//*[@id="wp_content_w6_0"]/table/tbody/tr/td/span/text()|//*[@id="wp_content_w6_0"]/table/tbody/tr[12]/td[4]/span/span/text()|//*[@id="wp_content_w6_0"]/table/tbody/tr[17]/td[4]/text()')
+
+print(len(list_all))
+# 纠错
+for i in list_all:
+    print(i)

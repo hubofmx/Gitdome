@@ -1,0 +1,75 @@
+import pymysql
+# 1、先安装pymysql
+# 2、计算机本地要有mysql数据库，记住账号、密码等信息
+# 数据库连接
+connection = pymysql.connect( host='localhost',#主机
+                 port=3306, # 端口号
+                 user='root',  # 用户名
+                 password='123456',  # 密码
+                 db='xscj',  # 连接的数据库名
+                 charset='utf8'  # 最后一个参数，没有逗号，字符集设定
+)
+print("数据库连接成功！")
+#cursor  数据库的代表，之后数据库操作，全部以此开始
+cursor = connection.cursor()
+# 总结数据库操作步骤：
+# 1、mysql的sql 语法： 写出语句，建表、插入、删除、更新、查询
+# 2、执行语句：  cursor.execute(sql2)  #执行
+# 3、提交事务：  connection.commit()
+
+#一、创建数据表
+sql = "CREATE TABLE news(" \
+      " new_id  INT PRIMARY KEY," \
+      " new_title VARCHAR(100)," \
+      " new_part VARCHAR(50)," \
+      " click INT,DATE  VARCHAR(20)" \
+      ") "
+#cursor.execute(sql)
+print("数据表创建成功！")
+connection.commit()
+# 二、向表中插入数据
+sql_1 = "insert into news values(1,'【疫情防控】致全校党员干部的倡议书','党委宣传网工部',1125,'2022-11-15')"
+#cursor.execute(sql_1)
+connection.commit()
+print("成功插入",cursor.rowcount,"条数据！")
+# 三、数据的查询
+sql_2 = "select * from news"
+cursor.execute(sql_2)
+connection.commit()
+for row in cursor.fetchall():
+    print(row)
+
+# 使用Python操作数据库
+# 1、向xscj数据库插入数据：
+#'2016110103'   102  44  3
+#sql1 = "INSERT INTO xs_kc(学号,课程号,成绩,学分) VALUES('2016110103','102',44,3)"
+sql1 = "INSERT INTO xs_kc(学号,课程号,成绩,学分) VALUES('2016110103','102',44,3)"
+sql2 = "INSERT INTO xs_kc VALUES('2016110103','103',100,3)"
+#cursor.execute(sql1)  #执行
+connection.commit() # 提交事务，这句话固定不变，每次都是放在执行完sql语句之后
+print("数据插入成功！")
+# 作业：向xs_kc表加入，2016110103，103 ，100 ，3
+
+# 2、数据更新
+sql5 = " update xs_kc set 成绩=99  where 学号='2016110103' and 课程号='102'  "
+#cursor.execute(sql5)
+connection.commit()
+print("成功修改",cursor.rowcount,"条数据！") # 属性：rowcount 统计行数
+
+# 3、删除数据
+sql6 = "delete from xs_kc where 学号='2016110103' "
+cursor.execute(sql6)
+connection.commit()
+print("成功删除",cursor.rowcount,"条数据！")
+
+#4、数据查询
+sql3 = "select * from xs_kc where 学号='2016110103'"
+sql4 = "select * from xs_kc "
+cursor.execute(sql4)  # cursor 40条继续
+for row in cursor.fetchall():  #fetchall()  查询全部记录
+    print(row)
+    #print("学号:%s\t课程号:%s\t成绩:%f\t学分:%d\t"%row)
+connection.commit() # 提交事务，这句话固定不变，每次都是放在执行完sql语句之后
+print("数据查询成功！")
+
+

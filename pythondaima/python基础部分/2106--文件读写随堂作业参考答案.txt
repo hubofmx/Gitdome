@@ -1,0 +1,58 @@
+#在E盘新建文件夹python，
+# 在该文件夹中新建文件demo.txt，
+# 使用write方法向其中写入内容：“蓬头稚子学垂纶，侧坐莓苔草映身。路人借问遥招手，怕得鱼惊不应人。”；
+# 再次使用write方法向该文件写入“锄禾日当午，汗滴禾下土；谁知盘中餐，粒粒皆辛苦。”，
+# 前面的内容要求被覆盖，此时将文件内容读取出来打印至屏幕，观察其变化；
+'''
+with open("D:/Python/demo.txt","w+",encoding="UTF8") as f:
+    #s1 = "蓬头稚子学垂纶，侧坐莓苔草映身。路人借问遥招手，怕得鱼惊不应人。\n"
+    s2 ="锄禾日当午，汗滴禾下土；谁知盘中餐，粒粒皆辛苦。\n"
+    f.write(s2)
+    print("写入成功！")
+
+with open("D:/Python/demo.txt","r+",encoding="UTF8") as f:
+    s = f.read()
+    print(s)
+'''
+
+#再将列表 alist = [‘重庆城市管理职业学院 ’,‘ 大数据与信息产业学院 ’,‘ 大数据技术 ’,‘ 2021级4班’]
+# 追加到demo.txt，使用redlines方法将其读出来打印到屏幕；
+''' 
+alist = ['重庆城市管理职业学院 ','大数据与信息产业学院 ',' 大数据技术 ',' 2021级4班']
+with open("D:/Python/demo.txt","a+",encoding="UTF8") as f:
+    f.writelines(alist)
+    print("写入成功！")
+'''
+# 读取
+''' 
+with open("D:/Python/demo.txt","r+",encoding="UTF8") as f:
+    l2 = f.readlines()
+    print(l2)
+
+for i in l2:
+    print(i,end="")
+'''
+# 第三题：
+
+print("in方法")
+with open("e:\\test2.txt","r+") as f:
+    for i in f:
+        print(i,end=" ")
+
+print("\n")
+print("readlines方法")
+with open("e:\\test2.txt","r+") as f1:
+    list1 = f1.readlines()
+    
+for i in range(len(list1)):
+        print(list1[i],end=" ")
+
+
+print("\n")
+print("readline方法")
+with open("e:\\test2.txt","r+") as f2:
+    while 1:
+        str =  f2.readline()
+        print(str,end="")
+        if str=="":
+            break

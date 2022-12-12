@@ -1,0 +1,78 @@
+
+print("李老师","上午好")  # 输出完之后end，默认：换行
+print("张同学","上午好",sep='***',end='\t\t\t')
+#print("同学们","上午好",sep='----->',end='****不换行')
+print("同学们","上午好",sep=',')
+#  李老师，上午好 同学们----->上午好
+
+
+#print( 3+5 )
+#print( '3+5' )
+#print("a=",100)  #打印输出的结果？   a=100    a= 100
+#print("a=",100,sep='',end='') #不换行  不空格   sep=''  end=''
+
+# 从键盘输入两个数，打印输出其id、数据类型，求出两数的和、差、乘积；
+#x = eval( input("请输入第一个数：") )
+
+x = eval( input("请输入第一个数：") )  #  强制转换成整形
+y = eval( input("请输入第二个数：") )
+# 输入的数值，全部处理成整形数据？？？----  int   float  str 强制转换
+print("x的数据类型为",type(x),sep=":")
+print("y的数据类型为",type(y),sep=":")
+print("x的存储地址是:",id(x),sep="")
+print("y的存储地址是:",id(y),sep="")
+sum = x+y
+sub = x-y
+mul = x*y
+print("x+y=",sum,sep="")
+print("x-y=",sub,sep="")
+print("x*y=",mul,sep="")
+x = 34.9
+y = int(x)  #强制转换，直接丢掉小数点后的数据
+x1 = 35
+y1 = float(x1)
+print(x,y)
+print(x1,y1)
+
+x = 10
+print("二进制：" ,bin(x) )
+print("八进制：" ,oct(x) )
+print("十六进制：",hex(x) )  # 十六进制数：0~9  a~f字母构成
+print("十进制：" ,int(x) )
+
+x = 3+4j
+y = 6+7j
+print(type(x)) # complex -->复数类型
+print(x+y)
+
+m = 4
+print(type(m))
+m1 = complex(m)
+m2 = float(m)
+m3 = str(m)
+print(type(m1),m1)
+print(type(m2))
+print(type(m3))
+
+
+x = 0
+print(type(x))
+y = 10
+print(type(y))
+x1 = bool(x)  #bool类型，逻辑型，True-->一切非零的  Flase-->一切为零的
+y1 = bool(y)
+print(type(x1),x1)
+print(type(y1),y1)
+# 总结数据类型： int（ bin() oct() hex()）   float  str  complex  bool
+
+#赋值  1、
+x = 100
+print(x)
+# 2、链式赋值
+x=y=z=200
+print(x,y,z)
+# 3、解包赋值，要求：左边的变量个数和右边的赋值个数一定要相等
+a,b,c = 100,200,300
+#m,n,l= 1,2   错误的
+print(a,b,c)
+#print(m,n,l)

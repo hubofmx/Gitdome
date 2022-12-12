@@ -1,0 +1,102 @@
+import requests
+from bs4 import BeautifulSoup
+try:
+    # 定位爬虫目标url 信息
+    url = "http://python123.io/ws/demo.html"
+    url_1= "https://www.cswu.cn/_upload/article/images/72/ee/f4aad4214c29a94bcbc08cfe1491/c04886a0-c2ac-406e-a5dc-06f32a8aca5c.jpg"
+    #伪装请求头，谷歌浏览
+    hd = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+    # get方法抓取网页信息
+    r = requests.get(url,headers=hd)
+    #自动获取异常的函数，只要网页反馈不是200 ，抛出异常
+    r.raise_for_status()
+    #设置呈现不编码
+    r.encoding="UTF-8"
+    #以上内容是爬虫都需要的内容
+    #print( r.text )
+    #熬汤： 原材料---requests抓取下来的html 信息
+    # 作料： 解析器，因为安装了 bs4库  html.parser
+    #汤熬好了
+    soup = BeautifulSoup(r.text,'html.parser')
+    # prettify :美丽的
+    #print(soup)
+    #print(soup.prettify())
+except:
+    print("异常！")
+
+# 1、寻找标签(tag 类型)方式1，默认找第一个该标签
+
+title = soup.title
+p = soup.p
+a = soup.a
+print("=========")
+print(title)
+print("=========")
+print(p)
+print("=========")
+print(type(a))
+print("-----标签名字：")
+print(title.name)
+# 父标签
+parent_p = soup.p.parent
+parent_t = soup.title.parent
+print("------父标签：")
+#print(parent_p)
+print(parent_t)
+print("------父标签名字：")
+print(soup.p.parent.name)
+
+# 2、寻找标签(tag 类型)的属性
+
+tag = soup.a
+#print(tag)
+id1 = soup.a.attrs['id']
+class_ = tag.attrs['class']
+href = tag.attrs['href']
+print(id1)
+print(class_)
+print(href)
+
+
+# 3、寻找标签(tag 类型)的字符串
+tag = soup.a
+print( soup.a.string )
+
+# 4、使用find()  find_all() 寻找目标标签
+a1 = soup.find('a') # 找出满足条件的第一个标签
+a = soup.find_all('a') #找出满足条件的全部标签，且将其装到 [  ]列表
+#print(p1)
+#print(type(p)) # 列表样子的类型 ,多个标签，装到[  ]里面
+#print(a)
+# 具体取出某一个标签内容，按照列表的样子去使用它（下标方式访问）
+print(a[1])
+print(a[1].attrs['id'])
+print(a[1].string)
+
+# 5、精准寻找目标标签
+tag1 = soup.find(class_ = "course")   # 特别注意，找class的属性，class_可行
+#print(tag1)
+p2 = soup.find('p',class_="title") # p标签，且标签的class值等于 title
+#  若是find函数找的，结果p2就是标签名
+print(p2)
+print(p2.string)
+
+# 若是find_all函数找的，结果p3就是列表名
+p3 = soup.find_all('p',class_="title")
+print(p3) # p3 列表名
+print(p3[0].string)  # p3[0] 标签名
+
+a2 = soup.find('a',id='link2')
+#a2 = soup.find('a',attrs={"id":"link2"})  # 这2句话等价，自己选择
+print(a2)
+print(a2.string)
+
+
+
+
+''' 
+#将二进制的信息保存到本地磁盘
+with open("d:/picture03.jpg","wb+") as f:
+    f.write(rb)
+    print("图片保存成功！")
+'''

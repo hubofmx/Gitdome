@@ -1,0 +1,64 @@
+import math
+def yuan_area(r): #函数定义，参数--形式参数，形参
+    s = math.pi*r*r
+    return s
+def zheng_area(a):
+    s = a*a
+    return s
+
+r = 4
+a = 8
+s1 = yuan_area(r) + zheng_area(a) # 函数调用：参数--实际参数，实参
+s2 = zheng_area(a) - yuan_area(r)
+s3 = yuan_area(r) - pow(2*r,2)/2
+print("第1幅图面积：",s1)
+print("第2幅图面积：",s2)
+print("第3幅图面积：",s3)
+
+#1+2+3+..+n
+import math
+def sum(a):
+    s = 0
+    for i in range(1,a+1):
+        s = s+i
+    return s
+def Sjx(a,b,c):
+    p = (a+b+c)/2
+    s = math.sqrt( p*(p-a)*(p-b)*(p-c))
+    return s
+
+#n = int(input("n="))  # 10
+a = eval(input("a="))
+b = eval(input("b="))
+c = eval(input("c="))
+#条件
+while 1: # 1: 条件永远是真
+    if  a+b>c and a+c>b and b+c>a and a>0 and b>0 and c>0:
+        s1 = Sjx(a,b,c)
+        print("该三角形的面积：",s1)
+        break
+    else:
+        print("输入的值不能构成三角形，请你重新输入:")
+        a = eval(input("a="))
+        b = eval(input("b="))
+        c = eval(input("c="))
+
+def SayHello():
+    print("大家好！")
+def Max1(a,b):
+    if a>=b:
+        print(a)
+    else:
+        print(b)
+def Max2(x,y):
+    t = x
+    if x<y:
+        t=y
+    return t
+
+#SayHello()
+#Max1(7,45)
+d1 = Max2(7,45)
+print(d1)
+
+

@@ -1,0 +1,30 @@
+import requests
+from bs4 import BeautifulSoup
+url1 = "https://python123.io/ws/demo.html"
+url2 = "https://www.shanghairanking.cn/rankings/bcur/2022"
+hd = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+r = requests.get(url2,headers=hd)
+r.encoding="UTF-8"
+soup = BeautifulSoup(r.text,"html.parser")
+#print(soup.prettify())
+tag_a = soup.find('a',class_='name-cn')
+#print(tag_a.string)
+#方法1：find_all() 找出了所有学校名称所在的标签
+list_a = soup.find_all('a',class_='name-cn') # 列表
+# select() :精准查找标签信息,且：返回的是列表， 列表[i].string 返回字符串
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(1) > td.align-left > div > div.univname > div:nth-child(1) > div > div > a
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(2) > td.align-left > div > div.univname > div:nth-child(1) > div > div > a
+#content-box > div.rk-table-box > table > tbody > tr > td.align-left > div > div.univname > div:nth-child(1) > div > div > a
+list2 = soup.select("#content-box > div.rk-table-box > table > tbody > tr:nth-child(1) > td.align-left > div > div.univname > div:nth-child(1) > div > div > a")
+#print(list2[0].string)
+#print(list2[0].get_text()) #标签.string   标签.get_text()  返回字符串
+#方法2：select() 找出了所有学校名称所在的标签
+list_all = soup.select("#content-box > div.rk-table-box > table > tbody > tr > td.align-left > div > div.univname > div:nth-child(1) > div > div > a")
+print(list_all[29].get_text())
+
+# list_all  list_a 列表内容相同：
+list1 = []
+for i in range(0,len(list_a)):
+    #print(list_a[i].string)
+    list1.append(list_a[i].string)
+#print(list1)

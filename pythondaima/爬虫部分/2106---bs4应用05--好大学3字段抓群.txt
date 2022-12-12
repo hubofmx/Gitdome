@@ -1,0 +1,52 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.shanghairanking.cn/rankings/bcur/2022"
+#url2 = "https://www.cswu.cn/34/list.htm"
+headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+r = requests.get(url,headers=headers)
+r.encoding="UTF-8"
+demo = r.text
+soup = BeautifulSoup(demo,"html.parser")
+#print(soup.prettify())
+
+# 排名
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(1) > td:nth-child(1) > div
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(2) > td:nth-child(1) > div
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(3) > td:nth-child(1) > div
+list1 = soup.select("#content-box > div.rk-table-box > table > tbody > tr > td:nth-child(1) > div")
+#print(list1[0].get_text())
+# 学校的名字
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(1) > td.align-left > div > div.univname > div:nth-child(1) > div > div > a
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(2) > td.align-left > div > div.univname > div:nth-child(1) > div > div > a
+list2 = soup.select("#content-box > div.rk-table-box > table > tbody > tr > td.align-left > div > div.univname > div:nth-child(1) > div > div > a")
+#print(list2[1].string)
+# 得分
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(1) > td:nth-child(5)
+#content-box > div.rk-table-box > table > tbody > tr:nth-child(2) > td:nth-child(5)
+list3 = soup.select("#content-box > div.rk-table-box > table > tbody > tr > td:nth-child(5)")
+#print(list3[2].string)
+# list1 list2 list3
+#1  清华大学  999.2
+#list1[0]  list2[0]  list3[0]
+#list1[1]  list2[1]  list3[1]
+#...
+#list1[29]  list2[29]  list3[29]
+list_all = [ ]
+for i in range(30): # i = 0 1 2 3 ....29
+    # 三个列表同步取字符串，且去掉左右两边的空格，封装一个新列表
+   #print( [list1[i].string.strip(),list2[i].string.strip(),list3[i].string.strip()] )
+    list_all.append( [list1[i].string.strip().ljust(10), list2[i].string.strip().center(50), list3[i].string.strip()+"\n".ljust(10)] )
+#print(list_all)
+
+# [  [],[],[],[]  ...[]   ]
+# 箱子 里面 是小箱子   小箱子里面才是苹果
+# 存文件
+with open("d:/good_college.txt","w+",encoding='utf-8') as f:
+     # 列表： 里面还是列表
+     for little_list in list_all:
+         # little_list ---小列表，里面包含三个字符串
+        f.writelines(little_list)
+     print("成功写入！")
+    #f.writelines() # 一次性写入多个字符串
+    #f.write() # 一次写入一个字符串

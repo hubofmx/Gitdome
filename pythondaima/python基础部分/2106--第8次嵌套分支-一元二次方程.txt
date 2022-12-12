@@ -1,0 +1,34 @@
+# 引入模块 math
+import  math
+a = int(input("a="))
+b = int(input("b="))
+c = int(input("c="))
+''' 
+if  a !=0
+              2、if   两个不相等的根
+                        z = b2-4*a*c>0
+                         x1 = (-b+math.sqrt(z))/(2a)
+                         x2 = (-b-math.sqrt(z))/(2a)
+                     elif   两个相等的根
+                         b2-4*a*c=0
+                          x1 = x2 = (-b)/(2*a)
+                     else   没有根
+1、else:
+           不是一个一元二次方程
+'''
+if a!=0:
+    # 三种情况： b*b-4ac = 4-4*1*4     x2+4x+2
+    z = b*b-4*a*c
+    if z>0:
+        # 根号下求值
+        x1 = (-b+math.sqrt(z))/(2*a)
+        x2 = (-b-math.sqrt(z))/(2*a)
+        print("x1=",x1)
+        print("x2=",x2)
+    elif z==0:
+        x1 = x2 = -b/(2*a)
+        print("x1=x2=",x1)
+    else:
+        print("此方程没有实数根！")
+else:
+    print("不是一元二次方程！")

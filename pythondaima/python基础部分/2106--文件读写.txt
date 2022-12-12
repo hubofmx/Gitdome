@@ -1,0 +1,70 @@
+# 文件路径的表达方式 --右斜杠    D:\\
+# read(size) :读取文件指定长度的字符，最终返回的是字符串；
+#没有指定长度，读取全部的内容；
+'''
+with open("D:\\test2.txt","r+",encoding="UTF8") as f1: # f1文件的别名
+    s1 = f1.read(20)
+    s2 = f1.read()
+    print(type(s1))
+    print(s1)
+    print(s2)
+'''
+# 文件路径的表达方式 --左斜杠    D:/    左斜杠1根，右斜杠2根
+# readlines():读取文件的所有行，将每一行作为一个字符串(且每行后面自带一个\n换行)
+#文件有N行，会形成n个字符串，并且将字符串放入一个列表中，最终列表
+''' 
+with open("D:/test2.txt","r+",encoding="UTF8") as f2:
+    l1 = f2.readlines()
+    print(type(l1))
+    print(l1)
+
+for i in range(0,len(l1)):
+    print(l1[i],end="")  # 默认输出后换行，L1列表每一行自带换行符，所以出现空一行的效果
+'''
+# readline():读取一行数据，以字符串的方式返回
+'''  
+with open("D:/test2.txt","r+",encoding="UTF8") as f3:
+    s2 = f3.readline()
+    print(type(s2))
+    print(s2)
+
+with open("D:/test2.txt","r+",encoding="UTF8") as f3:
+    while 1:
+        s2 = f3.readline()
+        if s2: # 只要s2不是空的，条件就为真
+            print(s2,end="")
+        else:
+            break
+            '''
+# in :读取文件内容
+'''  
+with open("D:/test2.txt","r+",encoding="UTF8") as f4:
+    for s in f4:
+        print(s,end="")
+#读取文件，read(size)   readlines()  readline()   in
+'''
+# 写入的文件一定要事先存在，不是的
+# 若文件存在，就在改文件进行写入（覆盖还是追加）
+# 若文件不存在，新建该文件的同时写入内容
+# write(s)：将一个字符串s写入文件中
+# 覆盖原来内容：读写方式设置为------>   w+ 可读可写
+''' 
+with open("D:/my_test3.txt","w+",encoding="UTF8") as f5:
+    s10 = "<---锄禾日当午，汗滴禾下土；谁知盘中餐，粒粒皆辛苦!--->"
+    f5.write(s10)
+    print("sucess")
+'''
+# 追加到原内容的后面：读写方式设置为------>   a+ 可读可写可追加
+''' 
+with open("D:/my_test3.txt","a+",encoding="UTF8") as f6:
+    s11 = "\n3：<---锄禾日当午，汗滴禾下土；谁知盘中餐，粒粒皆辛苦!--->\n"
+    f6.write(s11)
+    print("sucess")
+'''
+# writelines(list1)：将list1列表中的多个字符串一次性写入文件中
+# 覆盖原来内容：w+
+# 追加到原内容的后面：a+
+l2 = ["\n重庆城市管理职业学院   ","  大数据与信息产业学院  ","  大数据技术  ","   2106\n"]
+with open("D:/my_test3.txt","a+",encoding="UTF8") as f7:
+    f7.writelines(l2)
+    print("sucess")

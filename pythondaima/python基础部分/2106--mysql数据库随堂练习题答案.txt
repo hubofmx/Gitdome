@@ -1,0 +1,35 @@
+sql4="INSERT INTO kc VALUES('115','python网络爬虫','李菊芳',3,64,6)"
+cursor.execute(sql4)
+connection.commit()
+print("数据插入成功！")
+cursor = connection.cursor()
+sql5 = "select * from kc "
+cursor.execute(sql5)
+for row in cursor.fetchall():
+    print(row)
+connection.commit()
+print("数据查询成功") 
+
+
+sql7="update xs_kc set 成绩=100 where 学号='2020110101' and 课程号='101'"
+cursor.execute(sql7)
+connection.commit()
+print("数据修改成功！")
+
+
+sql8="select 学号,姓名,性别,联系电话,专业名 from xsqk where 专业名='信息安全'"
+cursor.execute(sql8)
+connection.commit()
+print("数据查询成功！")
+
+sql9="delete from cj2 where 学号='2020110201' and 课程号='106'"
+cursor.execute(sql9)
+connection.commit()
+print("数据删除成功！")
+
+sql10="select *from xsqk"
+cursor.execute(sql10)
+for row in cursor.fetchall():
+    print(row)
+connection.commit()
+print("数据查询成功！")
