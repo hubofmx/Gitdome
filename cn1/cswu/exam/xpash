@@ -1,0 +1,4 @@
+新闻标题
+//*[@id="wp_news_w6"]/ul/li[1]/div[1]/span[2]/a
+//*[@id="wp_news_w6"]/ul/li[2]/div[1]/span[2]/a
+//*[@id="wp_news_w6"]/ul/li/div[1]/span[2]/a
