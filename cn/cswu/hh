@@ -1,0 +1,17 @@
+标题
+//*[@id="wp_news_w6"]/ul/li[1]/div[1]/span[2]/a
+//*[@id="wp_news_w6"]/ul/li[2]/div[1]/span[2]/a
+//*[@id="wp_news_w6"]/ul/li[3]/div[1]/span[2]/a
+部门
+//*[@id="wp_news_w6"]/ul/li[1]/span[1]
+//*[@id="wp_news_w6"]/ul/li[2]/span[1]
+//*[@id="wp_news_w6"]/ul/li[3]/span[1]
+时间
+//*[@id="wp_news_w6"]/ul/li[1]/div[2]/span
+//*[@id="wp_news_w6"]/ul/li[2]/div[2]/span
+//*[@id="wp_news_w6"]/ul/li[3]/div[2]/span
+点击量
+//*[@id="wp_news_w6"]/ul/li[1]/span[2]/span
+//*[@id="wp_news_w6"]/ul/li[2]/span[2]/span
+//*[@id="wp_news_w6"]/ul/li[3]/span[2]/span
+

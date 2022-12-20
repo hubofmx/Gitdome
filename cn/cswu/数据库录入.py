@@ -1,0 +1,70 @@
+import pymysql
+import requests
+from lxml import etree
+
+
+def create_table():
+    sql = "CREATE TABLE news(id  INT PRIMARY KEY AUTO_INCREMENT," \
+          "title VARCHAR(100)," \
+          "part varchar(50)," \
+          "click int," \
+          "dt varchar(20))"
+    cursor.execute(sql)
+    print("建表成功！")
+    db.commit()
+
+
+def crawl(url, hd):
+    resp = requests.get(url, headers=hd)
+    # 转码---把html字符串源码转换成etree
+    tree = etree.HTML(resp.text)
+    # 数据提取---通过路径选取,新闻标题，单位，日期，点击数
+    # //*[@id="wp_news_w6"]/ul/li[]/div[1]/span[2]/a
+    titles = tree.xpath('//*[@id="wp_news_w6"]/ul/li/div[1]/span[2]/a/text()')
+    # //*[@id="wp_news_w6"]/ul/li/span[1]
+    parts = tree.xpath('//*[@id="wp_news_w6"]/ul/li/span[1]/text()')
+    # //*[@id="wp_news_w6"]/ul/li/div[2]/span
+    dts = tree.xpath('//*[@id="wp_news_w6"]/ul/li/div[2]/span/text()')
+    # //*[@id="wp_news_w6"]/ul/li/span[2]/span
+    clicks = tree.xpath('//*[@id="wp_news_w6"]/ul/li/span[2]/span/text()')
+    to_mysql(titles, parts, clicks, dts)
+
+
+def to_mysql(titles, parts, clicks, dts):
+    for i in zip(titles, parts, clicks, dts):  # zip打包成元祖
+        cursor.execute('insert into news(title,part,click,dt) values("%s","%s","%d","%s")' % (
+        str(i[0]), str(i[1]), int(i[2]), str(i[3])))
+        db.commit()
+    print("写入数据库成功！")
+
+
+# 查询函数最后在主程序单独执行；
+def select_info():
+    sql2 = "SELECT distinct * FROM news where part like '%大数据与信息产业学院%'"
+    cursor.execute(sql2)
+    for i in cursor.fetchall():
+        print(i)
+
+
+if __name__ == '__main__':
+    db = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='xscj', charset='utf8')
+    cursor = db.cursor()
+    print("数据库连接成功！")
+    hd = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
+    }
+
+    # 建表语句
+    create_table()
+    # 爬取所有新闻信息
+    for i in range(1, 20):
+        url = 'https://www.cswu.cn/34/list' + str(i) + '.htm'
+        # print(url)
+        crawl(url, hd)
+    cursor.close()
+    db.close()
+
+    # 当插入数据成功后，将上面的for循环的全部注释掉  单独执行下面的“select_info()”查询，避免重复插入数据；
+    # select_info()
+
+
